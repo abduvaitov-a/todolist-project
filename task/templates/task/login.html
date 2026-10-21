@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход в систему</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+</head>
+<body class="bg-light d-flex align-items-center justify-content-center" style="height: 100vh;">
+<div class="container" style="max-width: 420px;">
+    <div class="card p-4 shadow border-0 rounded-4">
+        <h3 class="text-center mb-4 fw-bold"><i class="bi bi-box-arrow-in-right"></i> Вход</h3>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Имя пользователя</label>
+                <input type="text" name="username" class="form-control py-2" placeholder="Логин" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Пароль</label>
+                <input type="password" name="password" class="form-control py-2" placeholder="Пароль" required>
+            </div>
+            {% if form.errors %}
+                <div class="alert alert-danger p-2 small text-center">
+                    Неверное имя пользователя или пароль.
+                </div>
+            {% endif %}
+            <button type="submit" class="btn btn-primary w-100 py-2 mt-2 fw-semibold shadow-sm">Войти</button>
+        </form>
+        <hr class="my-4">
+        <a href="{% url 'register' %}" class="btn btn-outline-secondary w-100 py-2">Создать аккаунт</a>
+    </div>
+</div>
+</body>
+</html>
